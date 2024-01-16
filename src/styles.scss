@@ -1,14 +1,16 @@
+@import './app/styles/themes/colors';
+
 // ==================== Reset CSS ====================
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 ul[class],
 ol[class] {
-  padding: 0;
-  list-style: none;
+	padding: 0;
+	list-style: none;
 }
 
 body,
@@ -25,27 +27,36 @@ figcaption,
 blockquote,
 dl,
 dd {
-  margin: 0;
+	margin: 0;
 }
 
 body {
-  min-height: 100vh;
-  scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-  margin: 0;
-  font-family: "Helvetica Neue", Roboto, sans-serif;
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+	margin: 0;
+	font-family: 'Helvetica Neue', Roboto, sans-serif;
 }
 
 blockquote {
-  display: block;
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+	display: block;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
 }
 
 a {
-  all: unset;
-  cursor: pointer;
+	all: unset;
+	cursor: pointer;
+}
+
+// ==================== Global Styles ====================
+
+$exr-nav-height: 4rem;
+
+.mdc-text-field {
+	border-radius: 0.3em !important;
+	width: 8rem !important;
 }

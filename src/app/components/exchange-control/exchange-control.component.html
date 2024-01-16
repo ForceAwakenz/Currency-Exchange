@@ -1,0 +1,10 @@
+<div class="controls">
+	<mat-form-field><mat-label>Convert:</mat-label><input matInput type="text" value="0" /></mat-form-field>
+	<mat-form-field>
+		<mat-select>
+			@for (currency of currencies; track currency) {
+				<mat-option [value]="currency.value">{{ currency.viewValue }}</mat-option>
+			}
+		</mat-select>
+	</mat-form-field>
+</div>

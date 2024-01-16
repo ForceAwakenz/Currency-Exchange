@@ -1,2 +1,2 @@
-[ ] Basic layout
+[x] Basic layout
 [ ] Set up API

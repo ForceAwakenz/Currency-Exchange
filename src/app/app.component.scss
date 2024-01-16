@@ -1,0 +1,27 @@
+@import '../styles.scss';
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 1em;
+	padding: 0 1em;
+	height: $exr-nav-height;
+}
+
+main {
+	height: calc(100vh - $exr-nav-height);
+	background-color: $exr-dark-grey;
+	padding: 1.5em;
+}
+
+.widget {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+}
+
+.compare_icon {
+	scale: 1.4;
+	margin-top: calc(var(--mat-form-field-subscript-text-line-height) * -1);
+}
