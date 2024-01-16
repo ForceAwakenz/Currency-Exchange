@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+
+$exr-primary: mat.define-palette(mat.$blue-palette);
+$exr-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
+$exr-warn: mat.define-palette(mat.$red-palette);
+
+$exr-theme: mat.define-dark-theme(
+	(
+		color: (
+			primary: $exr-primary,
+			accent: $exr-accent,
+			warn: $exr-warn,
+		),
+	)
+);
+
+@include mat.all-component-themes($exr-theme);
+
+$exr-dark-grey: hsl(200, 6%, 10%);

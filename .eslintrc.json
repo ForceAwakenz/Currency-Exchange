@@ -1,0 +1,98 @@
+{
+	"root": true,
+	"ignorePatterns": ["projects/**/*"],
+	"overrides": [
+		{
+			"files": ["*.ts"],
+			"parserOptions": {
+				"project": ["tsconfig.json"],
+				"createDefaultProgram": true
+			},
+			"extends": [
+				"plugin:@typescript-eslint/recommended",
+				"plugin:@angular-eslint/recommended",
+				"plugin:@angular-eslint/recommended",
+				"plugin:@angular-eslint/template/process-inline-templates",
+				"prettier"
+			],
+			"settings": {
+				"import/resolver": {
+					"typescript": {
+						"project": "./"
+					}
+				}
+			},
+			"plugins": ["prettier"],
+			"rules": {
+				"prettier/prettier": "error",
+				"@typescript-eslint/no-unused-vars": "off",
+				"@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
+				"@typescript-eslint/lines-between-class-members": [
+					"warn",
+					"always",
+					{ "exceptAfterSingleLine": true, "exceptAfterOverload": true }
+				],
+				"@typescript-eslint/naming-convention": [
+					"error",
+					{
+						"modifiers": ["private"],
+						"selector": ["memberLike"],
+						"format": ["camelCase"],
+						"leadingUnderscore": "require"
+					}
+				],
+				"@angular-eslint/directive-selector": [
+					"error",
+					{
+						"type": "attribute",
+						"style": "camelCase"
+					}
+				],
+				"@angular-eslint/component-selector": [
+					"error",
+					{
+						"type": "element",
+						"style": "kebab-case"
+					}
+				],
+				"@typescript-eslint/explicit-member-accessibility": [
+					"warn",
+					{
+						"accessibility": "no-public",
+						"overrides": {
+							"constructors": "off"
+						}
+					}
+				],
+				"curly": ["error", "multi-or-nest"],
+				"prefer-arrow-callback": "error",
+				"prefer-const": "error",
+				"prefer-object-spread": "error",
+				"object-curly-newline": [
+					"error",
+					{
+						"ObjectExpression": {
+							"multiline": true,
+							"minProperties": 2,
+							"consistent": true
+						},
+						"ObjectPattern": { "multiline": false },
+						"ImportDeclaration": { "multiline": true },
+						"ExportDeclaration": { "multiline": true }
+					}
+				],
+				"object-property-newline": "error",
+				"no-console": ["warn", { "allow": ["warn", "error"] }],
+				"no-nested-ternary": "error"
+			}
+		},
+		{
+			"files": ["*.html"],
+			"excludedFiles": ["*inline-template-*.component.html"],
+			"extends": ["plugin:@angular-eslint/template/recommended", "plugin:prettier/recommended"],
+			"rules": {
+				"prettier/prettier": ["warn", { "parser": "angular" }]
+			}
+		}
+	]
+}
