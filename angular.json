@@ -42,6 +42,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -72,7 +78,7 @@
             },
             "development": {
               "buildTarget": "Currency-Exchange:build:development",
-              "port": 4444
+              "port": 4422
             }
           },
           "defaultConfiguration": "development"
