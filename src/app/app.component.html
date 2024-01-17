@@ -14,8 +14,10 @@
 </mat-toolbar>
 <main>
 	<div class="widget">
-		<exr-exchange-control></exr-exchange-control>
-		<mat-icon color="primary" class="compare_icon">compare_arrows</mat-icon>
-		<exr-exchange-control></exr-exchange-control>
+		@if (availableCurrencies | async; as availableCurrencies) {
+			<exr-exchange-control label="From:" [currencies]="availableCurrencies"></exr-exchange-control>
+			<mat-icon color="primary" class="compare_icon">compare_arrows</mat-icon>
+			<exr-exchange-control label="To:" [currencies]="availableCurrencies"></exr-exchange-control>
+		}
 	</div>
 </main>

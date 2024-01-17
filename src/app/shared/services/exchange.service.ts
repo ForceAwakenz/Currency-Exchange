@@ -1,7 +1,8 @@
+import { StorageService } from '@app/shared/services/storage.service';
 import { Injectable, inject } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable, filter, map, tap } from 'rxjs';
-import { BaseCurrencyRatesResponseType, CurrencyRateDisplayType } from './models/responses';
+import { BaseCurrencyRatesResponseType, CurrencyRateDisplayType, CurrencyType } from './models/responses';
 import { HTTPSuccessResponse } from './models/http';
 import { formatRateForDisplay } from '@src/app/utils/number.utils';
 
@@ -10,6 +11,7 @@ import { formatRateForDisplay } from '@src/app/utils/number.utils';
 })
 export class ExchangeService {
 	private apiService = inject(ApiService);
+	private storageService = inject(StorageService);
 
 	/**
 	 * composeRatesForBaseCurrency fetches the base currency rates and transforms them into an array of 'EUR/UAH: 42.22' type of strings.
@@ -30,6 +32,19 @@ export class ExchangeService {
 					[]
 				)
 			)
+		);
+	}
+
+	getAvailableCurrencies(): Observable<CurrencyType[]> {
+		const availableCurrencies = [
+			...this.storageService.getDisplayedCurrencies(),
+			this.storageService.getBaseCurrency(),
+		];
+
+		return this.apiService.getAllCurrencies().pipe(
+			filter((response): response is HTTPSuccessResponse<CurrencyType[]> => response.meta.code === 200),
+			map(response => response.response),
+			map(response => response.filter(currency => availableCurrencies.includes(currency.short_code)))
 		);
 	}
 }
