@@ -14,8 +14,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class ExchangeControlComponent {
 	@Input() label?: string;
 	currencies = [
-		{ value: 'usd', viewValue: 'USD' },
-		{ value: 'eur', viewValue: 'EUR' },
-		{ value: 'uah', viewValue: 'UAH' },
+		{
+			value: 'usd',
+			viewValue: 'USD',
+		},
+		{
+			value: 'eur',
+			viewValue: 'EUR',
+		},
+		{
+			value: 'uah',
+			viewValue: 'UAH',
+		},
 	];
 }
