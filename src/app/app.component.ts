@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ExchangeControlComponent } from '@app/components/exchange-control/exchange-control.component';
+import { ExchangeService } from './shared/services/exchange.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
 	selector: 'app-root',
@@ -14,5 +16,12 @@ import { ExchangeControlComponent } from '@app/components/exchange-control/excha
 	styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-	ngOnInit(): void {}
+	protected exchangeRatesForBaseCurrency!: Observable<string[]>;
+	private exchangeService = inject(ExchangeService);
+
+	ngOnInit(): void {
+		this.exchangeRatesForBaseCurrency = this.exchangeService
+			.composeRatesForBaseCurrency()
+			.pipe(map(rates => rates.map(rate => Object.values(rate)[0])));
+	}
 }
