@@ -7,6 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ExchangeControlComponent } from '@app/components/exchange-control/exchange-control.component';
 import { ExchangeService } from './shared/services/exchange.service';
 import { Observable, map } from 'rxjs';
+import { CurrencyType } from './shared/services/models/responses';
+import { getSingleValue } from './utils/common.utils';
 
 @Component({
 	selector: 'app-root',
@@ -17,11 +19,14 @@ import { Observable, map } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 	protected exchangeRatesForBaseCurrency!: Observable<string[]>;
+	protected availableCurrencies!: Observable<CurrencyType[]>;
 	private exchangeService = inject(ExchangeService);
 
 	ngOnInit(): void {
 		this.exchangeRatesForBaseCurrency = this.exchangeService
 			.composeRatesForBaseCurrency()
-			.pipe(map(rates => rates.map(rate => Object.values(rate)[0])));
+			.pipe(map(rates => rates.map(rate => getSingleValue(rate))));
+
+		this.availableCurrencies = this.exchangeService.getAvailableCurrencies();
 	}
 }

@@ -1,10 +1,20 @@
 <div class="controls">
-	<mat-form-field><mat-label>Convert:</mat-label><input matInput type="text" value="0" /></mat-form-field>
+	<mat-form-field
+		><mat-label>{{ label }}</mat-label
+		><input matInput type="text" value="0"
+	/></mat-form-field>
 	<mat-form-field>
 		<mat-select>
-			@for (currency of currencies; track currency) {
-				<mat-option [value]="currency.value">{{ currency.viewValue }}</mat-option>
+			@for (currency of currencies; track currency.id) {
+				<mat-option [value]="currency.short_code"
+					>{{ currency.symbol }}&nbsp;&nbsp;{{ currency.short_code }}</mat-option
+				>
 			}
 		</mat-select>
 	</mat-form-field>
 </div>
+<!-- TODO: images -->
+<!-- <img
+						src="https://www.xe.com/static-images/ron.static.5191563aa4ed0531b4eabc8985f42a09.svg"
+						height="15px"
+					/> -->
