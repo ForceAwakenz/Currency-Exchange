@@ -38,7 +38,7 @@
 						"modifiers": ["private"],
 						"selector": ["memberLike"],
 						"format": ["camelCase"],
-						"leadingUnderscore": "require"
+						"leadingUnderscore": "forbid"
 					}
 				],
 				"@angular-eslint/directive-selector": [

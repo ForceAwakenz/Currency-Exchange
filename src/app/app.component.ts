@@ -5,7 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ExchangeControlComponent } from '@app/components/exchange-control/exchange-control.component';
-import { ApiService } from './shared/services/api.service';
+import { ExchangeService } from './shared/services/exchange.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
 	selector: 'app-root',
@@ -15,9 +16,12 @@ import { ApiService } from './shared/services/api.service';
 	styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-	protected currencies!: any;
-	private apiService = inject(ApiService);
+	protected exchangeRatesForBaseCurrency!: Observable<string[]>;
+	private exchangeService = inject(ExchangeService);
+
 	ngOnInit(): void {
-		this.currencies = this.apiService.getAllRates();
+		this.exchangeRatesForBaseCurrency = this.exchangeService
+			.composeRatesForBaseCurrency()
+			.pipe(map(rates => rates.map(rate => Object.values(rate)[0])));
 	}
 }
