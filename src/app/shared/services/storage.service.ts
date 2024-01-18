@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DEFAULT_BASE_CURRENCY, DEFAULT_DISPLAYED_CURRENCIES } from './constants/default-displayed-currencies';
-import { CurrencySymbolType } from '../modles/currency-symbols';
+import { CurrencySymbolType } from '../models/currency-symbols';
 
 @Injectable({
 	providedIn: 'root',
