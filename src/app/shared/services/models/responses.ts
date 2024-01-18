@@ -30,7 +30,7 @@ export type ConversionResponseType = {
 	date: Date;
 	from: CurrencySymbolType;
 	to: CurrencySymbolType;
-	amount: number;
+	amount: string;
 	value: number;
 };
 

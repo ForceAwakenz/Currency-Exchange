@@ -17,9 +17,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CurrencyResponseType } from '@src/app/shared/services/models/responses';
 import { CommonModule } from '@angular/common';
-import { ExchangeForm, ExchangeFormValues } from '@src/app/shared/models/forms';
+import { ExchangeForm, ExchangeFormValues, ExtractValuesFromForm } from '@src/app/shared/models/forms';
 import { CurrencySymbolType } from '@src/app/shared/models/currency-symbols';
-import { Subject, debounceTime, takeUntil, tap } from 'rxjs';
+import { Observable, Subject, debounceTime, distinctUntilChanged, filter, map, takeUntil, tap } from 'rxjs';
+import { isValuesFromExchangeForm } from '@src/app/utils/form.utils';
 
 @Component({
 	selector: 'exr-exchange-control',
@@ -39,8 +40,8 @@ import { Subject, debounceTime, takeUntil, tap } from 'rxjs';
 export class ExchangeControlComponent implements OnInit, OnChanges, OnDestroy {
 	@Input() label = 'Amount';
 	@Input() currencies: CurrencyResponseType[] = [];
-	@Input() currencySymbol!: CurrencySymbolType;
-	@Input() amount!: string;
+	@Input({ required: true }) currencySymbol!: CurrencySymbolType;
+	@Input({ required: true }) amount!: string;
 
 	@Output() formUpdated = new EventEmitter<ExchangeFormValues>();
 
@@ -51,21 +52,19 @@ export class ExchangeControlComponent implements OnInit, OnChanges, OnDestroy {
 
 	ngOnInit(): void {
 		this.buildForm();
-		this.form.valueChanges
-			.pipe(debounceTime(200), takeUntil(this.destroyRef$))
-			.subscribe(formValues => this.formUpdated.emit(formValues));
+
+		this.formValueChanges().subscribe(formValues => this.formUpdated.emit(formValues));
 	}
 
-	// FIXME: to find a better way to update the form values
 	ngOnChanges(changes: Record<keyof this, SimpleChange>): void {
 		if (changes.currencySymbol || changes.amount) {
-			if (+changes.amount?.currentValue - +changes.amount?.previousValue > 0.01) return;
 			if (this.form) {
 				this.form.patchValue({
 					currency: this.currencySymbol,
 					amount: this.amount,
 				});
-				this.cdRef.markForCheck();
+
+				this.cdRef.detectChanges();
 			}
 		}
 	}
@@ -80,6 +79,23 @@ export class ExchangeControlComponent implements OnInit, OnChanges, OnDestroy {
 			amount: [this.amount],
 			currency: [this.currencySymbol],
 		});
+	}
+
+	private formValueChanges(): Observable<ExtractValuesFromForm<ExchangeForm>> {
+		return this.form.valueChanges.pipe(
+			debounceTime(100),
+			filter(isValuesFromExchangeForm),
+			map(formValues => ({
+				...formValues,
+				amount: formValues.amount?.replace(/[^0-9.]/g, ''),
+			})),
+			tap(formValues => {
+				this.form.patchValue(formValues);
+				this.cdRef.detectChanges();
+			}),
+			distinctUntilChanged(),
+			takeUntil(this.destroyRef$)
+		);
 	}
 
 	protected onInputClicked(e: MouseEvent): void {

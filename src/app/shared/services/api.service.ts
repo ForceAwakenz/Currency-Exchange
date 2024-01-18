@@ -2,7 +2,7 @@ import { HTTPSuccessResponse } from './models/http';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { API_CONVERT, API_CURRENCIES, API_RATES } from '../constants/api';
-import { Observable, map, throttleTime } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { StorageService } from './storage.service';
 import { BaseCurrencyRatesResponseType, ConversionResponseType, CurrencyResponseType } from './models/responses';
 
@@ -34,9 +34,8 @@ export class ApiService {
 	convert(from: string, to: string, amount: string): Observable<ConversionResponseType> {
 		const params = new HttpParams().set('from', from).set('to', to).set('amount', amount);
 
-		return this.http.get<HTTPSuccessResponse<ConversionResponseType>>(API_CONVERT, { params }).pipe(
-			throttleTime(1000),
-			map(response => response.response)
-		);
+		return this.http
+			.get<HTTPSuccessResponse<ConversionResponseType>>(API_CONVERT, { params })
+			.pipe(map(response => response.response));
 	}
 }

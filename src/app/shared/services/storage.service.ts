@@ -16,4 +16,9 @@ export class StorageService {
 		const storedCurrencies = localStorage.getItem('baseCurrency');
 		return storedCurrencies ? JSON.parse(storedCurrencies) : DEFAULT_BASE_CURRENCY;
 	}
+
+	getFractionDigits(): number {
+		const storedFractionDigits = localStorage.getItem('fractionDigits');
+		return storedFractionDigits ? JSON.parse(storedFractionDigits) : 2;
+	}
 }
