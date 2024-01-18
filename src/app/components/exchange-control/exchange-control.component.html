@@ -2,10 +2,16 @@
 	<form [formGroup]="form">
 		<mat-form-field
 			><mat-label>{{ label }}</mat-label
-			><input matInput formControlName="amount" type="text" value="0" (click)="onInputClicked($event)"
+			><input
+				matInput
+				formControlName="amount"
+				type="text"
+				value="0"
+				(click)="onInputClicked($event)"
+				class="long"
 		/></mat-form-field>
 		<mat-form-field>
-			<mat-select formControlName="currency">
+			<mat-select formControlName="currency" class="short">
 				@for (currency of currencies; track currency.id) {
 					<mat-option [value]="currency.short_code"
 						>{{ currency.symbol }}&nbsp;&nbsp;{{ currency.short_code }}</mat-option

@@ -1,3 +1,4 @@
+import { StorageService } from '@app/shared/services/storage.service';
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -22,6 +23,8 @@ import { CURRENCY_SYMBOLS } from './shared/models/currency-symbols';
 })
 export class AppComponent implements OnInit {
 	private exchangeService = inject(ExchangeService);
+	private storageService = inject(StorageService);
+	private fractionDigits!: number;
 
 	protected formsData: AppFormsDataValuesType = {};
 	protected exchangeRatesForBaseCurrency!: Observable<string[]>;
@@ -31,6 +34,8 @@ export class AppComponent implements OnInit {
 		this.exchangeRatesForBaseCurrency = this.exchangeService
 			.composeRatesForBaseCurrency()
 			.pipe(map(rates => rates.map(rate => getSingleValue(rate))));
+
+		this.fractionDigits = this.storageService.getFractionDigits();
 
 		this.availableCurrencies = this.exchangeService.getAvailableCurrencies();
 		this.fillTheForms();
@@ -50,7 +55,16 @@ export class AppComponent implements OnInit {
 		};
 	}
 
+	private isFormChanged(formValues: ExchangeFormValues, formOrder: number): boolean {
+		return (
+			this.formsData[formOrder].amount !== formValues.amount ||
+			this.formsData[formOrder].currency !== formValues.currency
+		);
+	}
+
 	protected handleFormUpdate(event: ExchangeFormValues, formOrder: number): void {
+		if (!this.isFormChanged(event, formOrder)) return;
+
 		const targetForm = formOrder === 1 ? 2 : 1;
 
 		this.formsData[formOrder] = {
@@ -64,7 +78,7 @@ export class AppComponent implements OnInit {
 				console.warn(response);
 				this.formsData[targetForm] = {
 					...this.formsData[targetForm],
-					amount: response.value.toFixed(4).toString(),
+					amount: response.value.toFixed(this.fractionDigits).toString(),
 				};
 			});
 	}

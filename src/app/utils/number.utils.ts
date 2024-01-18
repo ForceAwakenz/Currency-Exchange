@@ -5,5 +5,5 @@ const fractionOf = (number: number): number | null => (isNumber(number) ? 1 / nu
 const toFixed = (number: number | null, fractionDigits = 4): number | null =>
 	isNumber(number) ? Number(number.toFixed(fractionDigits)) : null;
 
-export const formatRateForDisplay = (number: number): number | string =>
-	toFixed(fractionOf(number)) ?? 'Convertion error';
+export const formatRateForDisplay = (number: number, fractionDigits: number): number | string =>
+	toFixed(fractionOf(number), fractionDigits) ?? 'Convertion error';

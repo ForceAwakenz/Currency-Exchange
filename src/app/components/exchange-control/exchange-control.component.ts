@@ -51,21 +51,20 @@ export class ExchangeControlComponent implements OnInit, OnChanges, OnDestroy {
 
 	ngOnInit(): void {
 		this.buildForm();
+		//TODO: restrict input to numbers only
 		this.form.valueChanges
 			.pipe(debounceTime(200), takeUntil(this.destroyRef$))
 			.subscribe(formValues => this.formUpdated.emit(formValues));
 	}
 
-	// FIXME: to find a better way to update the form values
 	ngOnChanges(changes: Record<keyof this, SimpleChange>): void {
 		if (changes.currencySymbol || changes.amount) {
-			if (+changes.amount?.currentValue - +changes.amount?.previousValue > 0.01) return;
 			if (this.form) {
 				this.form.patchValue({
 					currency: this.currencySymbol,
 					amount: this.amount,
 				});
-				this.cdRef.markForCheck();
+				this.cdRef.detectChanges();
 			}
 		}
 	}
