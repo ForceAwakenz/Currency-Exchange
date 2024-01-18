@@ -1,7 +1,4 @@
 <mat-toolbar class="nav" color="primary">
-	<button mat-icon-button>
-		<mat-icon>playlist_add</mat-icon>
-	</button>
 	<img src="../assets/currency_logo.svg" alt="Logo" class="logo" />
 	<h2>Exchange Rates App</h2>
 	<div class="rateList">
@@ -11,13 +8,28 @@
 			}
 		}
 	</div>
+	<button mat-icon-button>
+		<mat-icon>playlist_add</mat-icon>
+	</button>
 </mat-toolbar>
 <main>
 	<div class="widget">
 		@if (availableCurrencies | async; as availableCurrencies) {
-			<exr-exchange-control label="From:" [currencies]="availableCurrencies"></exr-exchange-control>
+			<exr-exchange-control
+				label="From:"
+				[amount]="this.formsData[1].amount!"
+				[currencySymbol]="this.formsData[1].currency!"
+				[currencies]="availableCurrencies"
+				(formUpdated)="handleFormUpdate($event, 1)"
+			></exr-exchange-control>
 			<mat-icon color="primary" class="compare_icon">compare_arrows</mat-icon>
-			<exr-exchange-control label="To:" [currencies]="availableCurrencies"></exr-exchange-control>
+			<exr-exchange-control
+				label="To:"
+				[amount]="this.formsData[2].amount!"
+				[currencySymbol]="this.formsData[2].currency!"
+				[currencies]="availableCurrencies"
+				(formUpdated)="handleFormUpdate($event, 2)"
+			></exr-exchange-control>
 		}
 	</div>
 </main>

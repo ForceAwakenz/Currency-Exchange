@@ -1,4 +1,4 @@
-import { CurrencySymbolType } from '@app/shared/modles/currency-symbols';
+import { CurrencySymbolType } from '@src/app/shared/models/currency-symbols';
 
 export type BaseCurrencyRatesResponseType = {
 	date: Date;
@@ -12,7 +12,7 @@ export type CurrencyRateDisplayType = {
 	[Key in CurrencySymbolType]+?: string;
 };
 
-export type CurrencyType = {
+export type CurrencyResponseType = {
 	id: number;
 	name: string;
 	short_code: CurrencySymbolType;
@@ -23,6 +23,15 @@ export type CurrencyType = {
 	symbol_first: boolean;
 	decimal_mark: string;
 	thousands_separator: string;
+};
+
+export type ConversionResponseType = {
+	timestamp: number;
+	date: Date;
+	from: CurrencySymbolType;
+	to: CurrencySymbolType;
+	amount: number;
+	value: number;
 };
 
 // "160": {

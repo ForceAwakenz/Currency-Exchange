@@ -39,3 +39,9 @@ main {
 		color: $exr-dark-grey;
 	}
 }
+
+::ng-deep {
+	.mdc-icon-button {
+		margin-left: auto;
+	}
+}
