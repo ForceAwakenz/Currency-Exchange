@@ -2,13 +2,7 @@
 	<form [formGroup]="form">
 		<mat-form-field
 			><mat-label>{{ label }}</mat-label
-			><input
-				matInput
-				formControlName="amount"
-				type="text"
-				value="0"
-				(click)="onInputClicked($event)"
-				class="long"
+			><input matInput formControlName="amount" type="text" value="0" (click)="onInputClicked($event)"
 		/></mat-form-field>
 		<mat-form-field>
 			<mat-select formControlName="currency" class="short">
