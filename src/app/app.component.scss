@@ -1,4 +1,5 @@
-@import '../styles.scss';
+@import './styles/variables';
+@import './styles/themes/colors';
 
 main {
 	height: calc(100vh - $exr-nav-height);

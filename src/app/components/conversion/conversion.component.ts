@@ -7,16 +7,13 @@ import { AppFormsDataValuesType, ConvertPropsType } from '@src/app/shared/models
 import { CURRENCY_SYMBOLS } from '@src/app/shared/models/currency-symbols';
 import { ExchangeService } from '@src/app/shared/services/exchange.service';
 import { StorageService } from '@src/app/shared/services/storage.service';
-import {
-	ConversionResponseType,
-	CurrencyResponseType,
-} from '/Users/force_awakenz/Developer/Angular/Currency-Exchange/src/app/shared/services/models/responses';
 import { getTarget } from '@src/app/utils/number.utils';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { ConversionResponseType, CurrencyResponseType } from '@src/app/shared/services/models/responses';
 
 const initValues: AppFormsDataValuesType = {
 	1: {
