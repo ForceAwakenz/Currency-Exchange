@@ -1,10 +1,9 @@
 @import '../styles.scss';
+@import './styles/mixins';
 
 .nav {
-	display: flex;
-	align-items: center;
+	@include basicFlexAlign();
 	justify-content: start;
-	gap: 1em;
 	padding: 0 1em;
 	height: $exr-nav-height;
 }
@@ -15,10 +14,13 @@ main {
 	padding: 1.5em;
 }
 
+form,
+form > .form-group {
+	@include basicFlexAlign();
+}
+
 .widget {
-	display: flex;
-	align-items: center;
-	gap: 1em;
+	@include basicFlexAlign();
 }
 
 .compare_icon {

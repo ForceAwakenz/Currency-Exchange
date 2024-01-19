@@ -9,27 +9,57 @@
 		}
 	</div>
 	<button mat-icon-button>
-		<mat-icon>playlist_add</mat-icon>
+		<mat-icon>settings</mat-icon>
 	</button>
 </mat-toolbar>
 <main>
 	<div class="widget">
 		@if (availableCurrencies | async; as availableCurrencies) {
-			<exr-exchange-control
-				label="From:"
-				[amount]="this.formsData[1].amount!"
-				[currencySymbol]="this.formsData[1].currency!"
-				[currencies]="availableCurrencies"
-				(formUpdated)="handleFormUpdate($event, 1)"
-			></exr-exchange-control>
-			<mat-icon color="primary" class="compare_icon">compare_arrows</mat-icon>
-			<exr-exchange-control
-				label="To:"
-				[amount]="this.formsData[2].amount!"
-				[currencySymbol]="this.formsData[2].currency!"
-				[currencies]="availableCurrencies"
-				(formUpdated)="handleFormUpdate($event, 2)"
-			></exr-exchange-control>
+			<form [formGroup]="form">
+				<div formGroupName="1" class="form-group">
+					<mat-form-field
+						><mat-label>From:</mat-label
+						><input
+							matInput
+							formControlName="amount"
+							type="text"
+							value="0"
+							(click)="onInputClicked($event)"
+					/></mat-form-field>
+					<mat-form-field>
+						<mat-select formControlName="currency">
+							@for (currency of availableCurrencies; track currency.id) {
+								<mat-option [value]="currency.short_code"
+									>{{ currency.symbol }}&nbsp;&nbsp;{{ currency.short_code }}</mat-option
+								>
+							}
+						</mat-select>
+					</mat-form-field>
+				</div>
+
+				<mat-icon color="primary" class="compare_icon">compare_arrows</mat-icon>
+
+				<div formGroupName="2" class="form-group">
+					<mat-form-field
+						><mat-label>To:</mat-label
+						><input
+							matInput
+							formControlName="amount"
+							type="text"
+							value="0"
+							(click)="onInputClicked($event)"
+					/></mat-form-field>
+					<mat-form-field>
+						<mat-select formControlName="currency">
+							@for (currency of availableCurrencies; track currency.id) {
+								<mat-option [value]="currency.short_code"
+									>{{ currency.symbol }}&nbsp;&nbsp;{{ currency.short_code }}</mat-option
+								>
+							}
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</form>
 		}
 	</div>
 </main>

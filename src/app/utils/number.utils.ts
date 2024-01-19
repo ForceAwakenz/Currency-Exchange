@@ -7,3 +7,9 @@ const toFixed = (number: number | null, fractionDigits = 4): number | null =>
 
 export const formatRateForDisplay = (number: number, fractionDigits: number): number | string =>
 	toFixed(fractionOf(number), fractionDigits) ?? 'Convertion error';
+
+/**
+ *
+ * @returns just opposite value of initiator
+ */
+export const getTarget = (initiator: 1 | 2): 1 | 2 => (initiator === 1 ? 2 : 1);

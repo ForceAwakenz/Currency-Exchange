@@ -19,10 +19,10 @@ export class ExchangeService {
 			.pipe(map(rates => composeExhangeRateString(rates, this.storageService.getFractionDigits())));
 	}
 
-	getAvailableCurrencies(): Observable<CurrencyResponseType[]> {
+	getExchangeRateCurrencies(): Observable<CurrencyResponseType[]> {
 		const availableCurrencies = [
 			this.storageService.getBaseCurrency(),
-			...this.storageService.getDisplayedCurrencies(),
+			...this.storageService.getExchangeRateCurrencies(),
 		];
 
 		return this.apiService

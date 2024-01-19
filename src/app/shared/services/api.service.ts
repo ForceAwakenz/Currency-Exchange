@@ -14,7 +14,7 @@ export class ApiService {
 	private stogageService = inject(StorageService);
 
 	getRatesOnBaseCurrency(): Observable<BaseCurrencyRatesResponseType> {
-		const displayedCurrencies = this.stogageService.getDisplayedCurrencies();
+		const displayedCurrencies = this.stogageService.getExchangeRateCurrencies();
 
 		const baseCurrency = this.stogageService.getBaseCurrency();
 
