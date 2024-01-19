@@ -43,14 +43,11 @@ export class ConversionComponent implements OnInit {
 	private fb = new FormBuilder();
 	private initiator!: 1 | 2;
 	private currentFormValues!: AppFormsDataValuesType;
-	private digitFraction!: number;
 
 	protected form!: FormGroup;
 	protected availableCurrencies!: Observable<CurrencyResponseType[]>;
 
 	ngOnInit(): void {
-		this.digitFraction = this.storageService.getFractionDigits();
-
 		this.availableCurrencies = this.exchangeService.getExchangeRateCurrencies();
 		this.currentFormValues = initValues;
 
@@ -108,7 +105,7 @@ export class ConversionComponent implements OnInit {
 	private handleUpdates = (response: ConversionResponseType): void => {
 		const updatedValue = {
 			...this.form.value,
-			[getTarget(this.initiator)]: { amount: response.value.toFixed(this.digitFraction) },
+			[getTarget(this.initiator)]: { amount: response.value.toFixed(this.storageService.getFractionDigits()) },
 		};
 
 		this.currentFormValues = updatedValue;

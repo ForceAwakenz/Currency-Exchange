@@ -14,9 +14,7 @@ export class ExchangeService {
 	private storageService = inject(StorageService);
 
 	composeRatesForBaseCurrency(): Observable<CurrencyRateDisplayType[]> {
-		return this.apiService
-			.getRatesOnBaseCurrency()
-			.pipe(map(rates => composeExhangeRateString(rates, this.storageService.getFractionDigits())));
+		return this.apiService.getRatesOnBaseCurrency().pipe(map(rates => composeExhangeRateString(rates, 2)));
 	}
 
 	getExchangeRateCurrencies(): Observable<CurrencyResponseType[]> {

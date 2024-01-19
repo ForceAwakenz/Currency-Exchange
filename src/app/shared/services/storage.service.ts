@@ -30,4 +30,8 @@ export class StorageService {
 		const storedFractionDigits = localStorage.getItem('fractionDigits');
 		return storedFractionDigits ? JSON.parse(storedFractionDigits) : 2;
 	}
+
+	setFractionDigits(fractionDigits: number): void {
+		localStorage.setItem('fractionDigits', JSON.stringify(fractionDigits));
+	}
 }

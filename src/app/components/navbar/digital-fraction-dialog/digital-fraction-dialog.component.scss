@@ -1,0 +1,11 @@
+@import '../../../styles/mixins';
+
+.main-paragraph {
+	margin-bottom: 1.5rem;
+}
+
+.dialog-actions {
+	@include basicFlexAlign();
+	gap: 0.5em;
+	margin-left: 1em;
+}
