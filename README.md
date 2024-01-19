@@ -1,6 +1,21 @@
-# CurrencyExchange
+# Exchange Rate Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+This application is a currency exchange rate converter built with Angular.
+It allows users to select a base currency and see the exchange rates for other currencies.
+
+## Features
+
+-   Real-time exchange rates: The application fetches the latest exchange rates from a reliable API.
+-   Currency selection: Users can select from a list of available currencies for conversion.
+-   Digital fraction settings: Users can set the number of decimal places to display for exchange rates.
+-   Changing any field automatically triggers recalculation of other fields
+
+## Technologies Used
+
+-   Angular: The application is built with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+-   RxJS: Used for handling asynchronous data streams.
+-   Angular Material: Used for UI components.
+-   StorageService: A custom service for storing user settings like the number of decimal places to display.
 
 ## Development server
 

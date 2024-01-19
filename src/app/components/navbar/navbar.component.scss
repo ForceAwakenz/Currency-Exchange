@@ -1,5 +1,6 @@
-@import '../../../styles.scss';
+@import '../../styles/variables';
 @import '../../styles/mixins';
+@import '../../styles/themes/colors';
 
 .nav {
 	@include basicFlexAlign();
