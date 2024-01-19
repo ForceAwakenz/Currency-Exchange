@@ -14,6 +14,14 @@ export type ExchangeForm = {
 	currency: FormControl<CurrencySymbolType>;
 };
 
-export type ExchangeFormValues = Partial<ExtractValuesFromForm<ExchangeForm>>;
+export type ExchangeFormValues = ExtractValuesFromForm<ExchangeForm>;
 
 export type AppFormsDataValuesType = Record<number, ExchangeFormValues>;
+
+export type CurrentRequestType = ExchangeFormValues & { initiator: 1 | 2 };
+
+export type ConvertPropsType = {
+	from: CurrencySymbolType;
+	to: CurrencySymbolType;
+	amount: string;
+};

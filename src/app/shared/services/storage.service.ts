@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { DEFAULT_BASE_CURRENCY, DEFAULT_DISPLAYED_CURRENCIES } from './constants/default-displayed-currencies';
+import {
+	DEFAULT_BASE_CURRENCY,
+	DEFAULT_CONVERSION_CURRENCIES,
+	DEFAULT_EXCHANGE_CURRENCIES,
+} from './constants/default-displayed-currencies';
 import { CurrencySymbolType } from '../models/currency-symbols';
 
 @Injectable({
@@ -7,9 +11,14 @@ import { CurrencySymbolType } from '../models/currency-symbols';
 })
 export class StorageService {
 	//TODO: create setDisplayedCurrencies method and functionality
-	getDisplayedCurrencies(): CurrencySymbolType[] {
-		const storedCurrencies = localStorage.getItem('displayedCurrencies');
-		return storedCurrencies ? JSON.parse(storedCurrencies) : DEFAULT_DISPLAYED_CURRENCIES;
+	getExchangeRateCurrencies(): CurrencySymbolType[] {
+		const storedCurrencies = localStorage.getItem('exchangeRateCurrencies');
+		return storedCurrencies ? JSON.parse(storedCurrencies) : DEFAULT_EXCHANGE_CURRENCIES;
+	}
+
+	getConversionCurrencies(): CurrencySymbolType[] {
+		const storedCurrencies = localStorage.getItem('conversionCurrencies');
+		return storedCurrencies ? JSON.parse(storedCurrencies) : DEFAULT_CONVERSION_CURRENCIES;
 	}
 
 	getBaseCurrency(): CurrencySymbolType {
