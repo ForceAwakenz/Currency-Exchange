@@ -60,3 +60,10 @@ $exr-nav-height: 4rem;
 	border-radius: 0.3em !important;
 	width: 10rem !important;
 }
+
+::ng-deep {
+	.mat-mdc-dialog-component-host {
+		display: block !important;
+		padding: 2rem;
+	}
+}

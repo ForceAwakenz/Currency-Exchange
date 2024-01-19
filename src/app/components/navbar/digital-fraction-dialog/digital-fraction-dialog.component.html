@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Hi</h1>
+<div mat-dialog-content>
+	<p class="main-paragraph">You can change number of decimals right here:</p>
+	<mat-form-field>
+		<mat-label>Decimals</mat-label>
+		<mat-select [(ngModel)]="data.decimalsNumber">
+			@for (num of [0, 1, 2, 3, 4, 5]; track $index) {
+				<mat-option [value]="num">{{ num }}</mat-option>
+			}
+		</mat-select>
+	</mat-form-field>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+	<button mat-raised-button color="primary" [mat-dialog-close]="data.decimalsNumber" cdkFocusInitial>Ok</button>
+	<button mat-flat-button color="accent" (click)="onCancel()">Cancel</button>
+</div>

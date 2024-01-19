@@ -1,0 +1,21 @@
+@import '../../styles/mixins';
+
+form,
+form > .form-group {
+	@include basicFlexAlign();
+}
+
+.widget {
+	@include basicFlexAlign();
+}
+
+.compare_icon {
+	scale: 1.4;
+	margin-top: calc(var(--mat-form-field-subscript-text-line-height) * -1);
+}
+
+::ng-deep {
+	.mdc-icon-button {
+		margin-left: auto;
+	}
+}
