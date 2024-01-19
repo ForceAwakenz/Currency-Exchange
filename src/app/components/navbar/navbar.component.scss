@@ -1,0 +1,23 @@
+@import '../../../styles.scss';
+@import '../../styles/mixins';
+
+.nav {
+	@include basicFlexAlign();
+	justify-content: start;
+	padding: 0 1em;
+	height: $exr-nav-height;
+}
+
+.logo {
+	height: 4rem;
+}
+
+.rateList {
+	margin-left: 1.5em;
+	display: flex;
+	gap: 1rem;
+	& > span {
+		font-size: 1rem;
+		color: $exr-dark-grey;
+	}
+}
