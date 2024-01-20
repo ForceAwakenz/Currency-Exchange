@@ -1,4 +1,4 @@
-# CurrencyExchange
+# CurrencyExchange <img src="src/assets/currency_logo.svg" height="20px" />
 
 This application is a currency exchange rate converter built with Angular.
 It allows users to select a base currency and see the exchange rates for other currencies.
