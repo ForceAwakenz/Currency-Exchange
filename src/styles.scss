@@ -1,5 +1,4 @@
 @import './app/styles/themes/colors';
-@import './app/styles/variables';
 
 // ==================== Reset CSS ====================
 *,
@@ -54,6 +53,8 @@ a {
 }
 
 // ==================== Global Styles ====================
+
+$exr-nav-height: 4rem;
 
 .mdc-text-field {
 	border-radius: 0.3em !important;
