@@ -85,7 +85,13 @@ export class ConversionComponent implements OnInit {
 
 				const target = getTarget(this.initiator);
 
-				if (isNaN(+newValue[this.initiator].amount)) return null;
+				if (isNaN(+newValue[this.initiator].amount)) {
+					this.form.controls[this.initiator].patchValue(
+						{ amount: this.currentFormValues[this.initiator].amount },
+						{ emitEvent: false }
+					);
+					return null;
+				}
 
 				return {
 					from: newValue[this.initiator].currency,
@@ -95,14 +101,17 @@ export class ConversionComponent implements OnInit {
 			}),
 			filter(Boolean),
 			debounceTime(300),
-			switchMap(props => this.exchangeService.convert(props.from, props?.to, props?.amount))
+			switchMap(props => this.exchangeService.convert(props.from, props.to, props.amount))
 		);
 	}
 
 	private handleUpdates = (response: ConversionResponseType): void => {
 		const updatedValue = {
 			...this.form.value,
-			[getTarget(this.initiator)]: { amount: response.value.toFixed(this.storageService.getFractionDigits()) },
+			[getTarget(this.initiator)]: {
+				amount: response.value.toFixed(this.storageService.getFractionDigits()),
+				currency: response.to,
+			},
 		};
 
 		this.currentFormValues = updatedValue;
