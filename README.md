@@ -12,7 +12,8 @@ It allows users to select a base currency and see the exchange rates for other c
 
 ## Technologies Used
 
--   Angular: The application is built with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+<a href="https://angular.io" target="_blank" rel="noreferrer"> <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="angular" width="20" height="20"/> </a> Angular: The application is built with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+
 -   RxJS: Used for handling asynchronous data streams.
 -   Angular Material: Used for UI components.
 -   StorageService: A custom service for storing user settings like the number of decimal places to display.
