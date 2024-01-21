@@ -13,6 +13,7 @@
 				"plugin:@angular-eslint/recommended",
 				"plugin:@angular-eslint/recommended",
 				"plugin:@angular-eslint/template/process-inline-templates",
+				"plugin:prettier/recommended",
 				"prettier"
 			],
 			"settings": {
@@ -26,11 +27,17 @@
 			"rules": {
 				"prettier/prettier": "error",
 				"@typescript-eslint/no-unused-vars": "off",
-				"@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
+				"@typescript-eslint/explicit-function-return-type": [
+					"error",
+					{ "allowExpressions": true }
+				],
 				"@typescript-eslint/lines-between-class-members": [
 					"warn",
 					"always",
-					{ "exceptAfterSingleLine": true, "exceptAfterOverload": true }
+					{
+						"exceptAfterSingleLine": true,
+						"exceptAfterOverload": true
+					}
 				],
 				"@typescript-eslint/naming-convention": [
 					"error",
@@ -64,24 +71,8 @@
 						}
 					}
 				],
-				"curly": ["error", "multi-or-nest"],
-				"prefer-arrow-callback": "error",
 				"prefer-const": "error",
 				"prefer-object-spread": "error",
-				"object-curly-newline": [
-					"error",
-					{
-						"ObjectExpression": {
-							"multiline": true,
-							"minProperties": 2,
-							"consistent": true
-						},
-						"ObjectPattern": { "multiline": false },
-						"ImportDeclaration": { "multiline": true },
-						"ExportDeclaration": { "multiline": true }
-					}
-				],
-				"object-property-newline": "error",
 				"no-console": ["warn", { "allow": ["warn", "error"] }],
 				"no-nested-ternary": "error"
 			}
@@ -89,7 +80,10 @@
 		{
 			"files": ["*.html"],
 			"excludedFiles": ["*inline-template-*.component.html"],
-			"extends": ["plugin:@angular-eslint/template/recommended", "plugin:prettier/recommended"],
+			"extends": [
+				"plugin:@angular-eslint/template/recommended",
+				"plugin:prettier/recommended"
+			],
 			"rules": {
 				"prettier/prettier": ["warn", { "parser": "angular" }]
 			}

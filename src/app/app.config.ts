@@ -7,5 +7,9 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { INTERCEPTORS } from './shared/services/interceptors/interceptors';
 
 export const appConfig: ApplicationConfig = {
-	providers: [provideRouter(routes), provideAnimations(), provideHttpClient(withInterceptors(INTERCEPTORS))],
+	providers: [
+		provideRouter(routes),
+		provideAnimations(),
+		provideHttpClient(withInterceptors(INTERCEPTORS)),
+	],
 };

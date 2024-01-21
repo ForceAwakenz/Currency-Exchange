@@ -5,7 +5,9 @@ import { responseProcessingInterceptor } from './responseProcessingInterceptor';
 
 describe('responseProcessingInterceptor', () => {
 	const interceptor: HttpInterceptorFn = (req, next) =>
-		TestBed.runInInjectionContext(() => responseProcessingInterceptor(req, next));
+		TestBed.runInInjectionContext(() =>
+			responseProcessingInterceptor(req, next)
+		);
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({});

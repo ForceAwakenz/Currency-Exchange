@@ -2,7 +2,10 @@
 	<img src="../assets/currency_logo.svg" alt="Logo" class="logo" />
 	<h2>Exchange Rates App</h2>
 	<div class="rateList">
-		@if (exchangeRatesForBaseCurrency | async; as exchangeRatesForBaseCurrency) {
+		@if (
+			exchangeRatesForBaseCurrency | async;
+			as exchangeRatesForBaseCurrency
+		) {
 			@for (rate of exchangeRatesForBaseCurrency; track rate) {
 				<span>{{ rate }}</span>
 			}

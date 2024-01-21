@@ -2,7 +2,11 @@ import { StorageService } from '@app/shared/services/storage.service';
 import { Injectable, inject } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable, map } from 'rxjs';
-import { ConversionResponseType, CurrencyRateDisplayType, CurrencyResponseType } from './models/responses';
+import {
+	ConversionResponseType,
+	CurrencyRateDisplayType,
+	CurrencyResponseType,
+} from './models/responses';
 import { composeExhangeRateString } from '@src/app/utils/string.utils';
 import { CurrencySymbolType } from '../models/currency-symbols';
 
@@ -14,7 +18,9 @@ export class ExchangeService {
 	private storageService = inject(StorageService);
 
 	composeRatesForBaseCurrency(): Observable<CurrencyRateDisplayType[]> {
-		return this.apiService.getRatesOnBaseCurrency().pipe(map(rates => composeExhangeRateString(rates, 2)));
+		return this.apiService
+			.getRatesOnBaseCurrency()
+			.pipe(map(rates => composeExhangeRateString(rates, 2)));
 	}
 
 	getExchangeRateCurrencies(): Observable<CurrencyResponseType[]> {
@@ -25,10 +31,20 @@ export class ExchangeService {
 
 		return this.apiService
 			.getAllCurrencies()
-			.pipe(map(response => response.filter(currency => availableCurrencies.includes(currency.short_code))));
+			.pipe(
+				map(response =>
+					response.filter(currency =>
+						availableCurrencies.includes(currency.short_code)
+					)
+				)
+			);
 	}
 
-	convert(from: CurrencySymbolType, to: CurrencySymbolType, amount: string): Observable<ConversionResponseType> {
+	convert(
+		from: CurrencySymbolType,
+		to: CurrencySymbolType,
+		amount: string
+	): Observable<ConversionResponseType> {
 		return this.apiService.convert(from, to, amount);
 	}
 }
