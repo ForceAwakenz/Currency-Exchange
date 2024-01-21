@@ -13,6 +13,7 @@
 				"plugin:@angular-eslint/recommended",
 				"plugin:@angular-eslint/recommended",
 				"plugin:@angular-eslint/template/process-inline-templates",
+				"plugin:prettier/recommended",
 				"prettier"
 			],
 			"settings": {
@@ -30,7 +31,10 @@
 				"@typescript-eslint/lines-between-class-members": [
 					"warn",
 					"always",
-					{ "exceptAfterSingleLine": true, "exceptAfterOverload": true }
+					{
+						"exceptAfterSingleLine": true,
+						"exceptAfterOverload": true
+					}
 				],
 				"@typescript-eslint/naming-convention": [
 					"error",
@@ -64,8 +68,6 @@
 						}
 					}
 				],
-				"curly": ["error", "multi-or-nest"],
-				"prefer-arrow-callback": "error",
 				"prefer-const": "error",
 				"prefer-object-spread": "error",
 				"object-curly-newline": [
