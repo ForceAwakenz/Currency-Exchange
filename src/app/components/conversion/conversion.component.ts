@@ -3,7 +3,10 @@ import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable, map, switchMap, filter, debounceTime } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AppFormsDataValuesType, ConvertPropsType } from '@src/app/shared/models/forms';
+import {
+	AppFormsDataValuesType,
+	ConvertPropsType,
+} from '@src/app/shared/models/forms';
 import { CURRENCY_SYMBOLS } from '@src/app/shared/models/currency-symbols';
 import { ExchangeService } from '@src/app/shared/services/exchange.service';
 import { StorageService } from '@src/app/shared/services/storage.service';
@@ -13,7 +16,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { ConversionResponseType, CurrencyResponseType } from '@src/app/shared/services/models/responses';
+import {
+	ConversionResponseType,
+	CurrencyResponseType,
+} from '@src/app/shared/services/models/responses';
 
 const initValues: AppFormsDataValuesType = {
 	1: {
@@ -29,7 +35,14 @@ const initValues: AppFormsDataValuesType = {
 @Component({
 	selector: 'exr-conversion',
 	standalone: true,
-	imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatSelectModule, MatIconModule],
+	imports: [
+		CommonModule,
+		ReactiveFormsModule,
+		MatInputModule,
+		MatFormFieldModule,
+		MatSelectModule,
+		MatIconModule,
+	],
 	templateUrl: './conversion.component.html',
 	styleUrl: './conversion.component.scss',
 })
@@ -49,7 +62,9 @@ export class ConversionComponent implements OnInit {
 		this.currentFormValues = initValues;
 
 		this.buildForm();
-		this.formValueChanges().pipe(takeUntilDestroyed(this.destroyRef$)).subscribe(this.handleUpdates);
+		this.formValueChanges()
+			.pipe(takeUntilDestroyed(this.destroyRef$))
+			.subscribe(this.handleUpdates);
 	}
 
 	private buildForm(): void {
@@ -101,7 +116,9 @@ export class ConversionComponent implements OnInit {
 			}),
 			filter(Boolean),
 			debounceTime(300),
-			switchMap(props => this.exchangeService.convert(props.from, props.to, props.amount))
+			switchMap(props =>
+				this.exchangeService.convert(props.from, props.to, props.amount)
+			)
 		);
 	}
 

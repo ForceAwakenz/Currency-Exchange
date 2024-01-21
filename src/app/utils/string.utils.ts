@@ -1,4 +1,7 @@
-import { BaseCurrencyRatesResponseType, CurrencyRateDisplayType } from '../shared/services/models/responses';
+import {
+	BaseCurrencyRatesResponseType,
+	CurrencyRateDisplayType,
+} from '../shared/services/models/responses';
 import { formatRateForDisplay } from './number.utils';
 
 /**
@@ -11,7 +14,9 @@ export const composeExhangeRateString = (
 	Object.entries(response.rates).reduce<CurrencyRateDisplayType[]>(
 		(acc, curr) => [
 			...acc,
-			{ [curr[0]]: `${curr[0]}/${response.base}: ${formatRateForDisplay(curr[1], fractionDigits)}` },
+			{
+				[curr[0]]: `${curr[0]}/${response.base}: ${formatRateForDisplay(curr[1], fractionDigits)}`,
+			},
 		],
 		[]
 	);

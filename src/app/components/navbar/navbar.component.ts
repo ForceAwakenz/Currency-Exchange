@@ -15,7 +15,14 @@ import { StorageService } from '@src/app/shared/services/storage.service';
 @Component({
 	selector: 'exr-navbar',
 	standalone: true,
-	imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule, FormsModule, MatButtonModule],
+	imports: [
+		CommonModule,
+		MatToolbarModule,
+		MatButtonModule,
+		MatIconModule,
+		FormsModule,
+		MatButtonModule,
+	],
 	templateUrl: './navbar.component.html',
 	styleUrl: './navbar.component.scss',
 })
@@ -36,7 +43,9 @@ export class NavbarComponent implements OnInit {
 
 	protected openDialog(): void {
 		const dialogRef = this.dialog.open(DigitalFractionDialogComponent, {
-			data: { decimalsNumber: this.storageService.getFractionDigits() },
+			data: {
+				decimalsNumber: this.storageService.getFractionDigits(),
+			},
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

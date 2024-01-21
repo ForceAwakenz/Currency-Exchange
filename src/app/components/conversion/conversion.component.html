@@ -4,13 +4,20 @@
 			<div formGroupName="1" class="form-group">
 				<mat-form-field
 					><mat-label>From:</mat-label
-					><input matInput formControlName="amount" type="text" value="0" (click)="onInputClicked($event)"
+					><input
+						matInput
+						formControlName="amount"
+						type="text"
+						value="0"
+						(click)="onInputClicked($event)"
 				/></mat-form-field>
 				<mat-form-field>
 					<mat-select formControlName="currency">
 						@for (currency of availableCurrencies; track currency.id) {
 							<mat-option [value]="currency.short_code"
-								>{{ currency.symbol }}&nbsp;&nbsp;{{ currency.short_code }}</mat-option
+								>{{ currency.symbol }}&nbsp;&nbsp;{{
+									currency.short_code
+								}}</mat-option
 							>
 						}
 					</mat-select>
@@ -22,13 +29,20 @@
 			<div formGroupName="2" class="form-group">
 				<mat-form-field
 					><mat-label>To:</mat-label
-					><input matInput formControlName="amount" type="text" value="0" (click)="onInputClicked($event)"
+					><input
+						matInput
+						formControlName="amount"
+						type="text"
+						value="0"
+						(click)="onInputClicked($event)"
 				/></mat-form-field>
 				<mat-form-field>
 					<mat-select formControlName="currency">
 						@for (currency of availableCurrencies; track currency.id) {
 							<mat-option [value]="currency.short_code"
-								>{{ currency.symbol }}&nbsp;&nbsp;{{ currency.short_code }}</mat-option
+								>{{ currency.symbol }}&nbsp;&nbsp;{{
+									currency.short_code
+								}}</mat-option
 							>
 						}
 					</mat-select>
